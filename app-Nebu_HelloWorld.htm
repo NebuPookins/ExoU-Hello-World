@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html> 
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Hello World Application</title>
+	<style type="text/css">
+		body {
+			color: #333;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			line-height: 20px;
+			background: #F5F5F5;
+			margin: 0;
+		}
+		#scrollable_container {
+			overflow: auto;
+		}
+		#container {
+			margin-left: auto;
+			margin-right: auto;
+			width: 940px;
+		}
+		#container div {
+			padding-left: 30px;
+			padding-right: 30px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			background-color: #FFF;
+		}
+		h1 {
+			font-size: 38.5px;
+			font-weight: bold;
+			height: 40px;
+			line-height: 40px;
+			margin-bottom: 10px;
+			margin-top: 10px;
+		}
+		p {
+			margin-bottom: 10px;
+		}
+		a {
+			color: #08c;
+			text-decoration: none;
+		}
+		a:hover, a:focus {
+			color: #005580;
+			text-decoration: underline;
+		}
+		dl {
+			margin-bottom: 20px;
+		}
+		dt {
+			font-weight: bold;
+		}
+		dd {
+			margin-left: 10px;
+		}
+		dt, dd {
+			line-height: 20px;
+		}
+		code {
+			padding: 2px 4px;
+			color: #d14;
+			white-space: nowrap;
+			background-color: #f7f7f9;
+			border: 1px solid #e1e1e8;
+		}
+		hr {
+			margin: 20px 0;
+			border: 0;
+			border-top: 1px solid #eee;
+			border-bottom: 1px solid #fff;
+		}
+		pre {
+			display: block;
+			padding: 9.5px;
+			margin: 0 0 10px;
+			font-size: 13px;
+			line-height: 20px;
+			white-space: pre-wrap;
+			background-color: #f5f5f5;
+			border: 1px solid rgba(0,0,0,0.15);
+			border-radius: 4px;
+		}
+		footer {
+			padding: 30px 0;
+			border-top: 1px solid #e5e5e5;
+		}
+		small {
+			font-size: 85%;
+		}
+	</style>
+</head>
+<body>
+<div id="scrollable_container">
+<div id="container">
+<div>
+	<h1>Hello World</h1>
+	<p>
+		This is a minimal application to show you how to create an
+		<a href="http://www.exou.com/">EXO U application</a>.
+	</p>
+	<hr/>
+	<p>
+		EXO U Applications are stored in your EXOapps Folder. Depending on what OS
+		you're using, your EXOapps folder is probably in one of these locations:
+	</p>
+	<dl>
+		<dt>Microsoft Windows</dt>
+		<dd><code>C:\Users\[YOUR USER]\Documents\My Apps\EXOapps\</code></dd>
+		<dt>Google Android</dt>
+		<dd><code>/mnt/sdcard/Android/data/exopc.engine/files/EXOapps</code></dd>
+		<dt>Apple Mac OS</dt>
+		<dd><code>/Users/USERNAME/EXOapps/</code></dd>
+		<dt>Linux</dt>
+		<dd><code>/home/USERNAME/EXOapps/</code></dd>
+	</dl>
+	<p>
+		This application is in a subfolder called <code>Nebu_HelloWorld</code>.
+		You can view the contents of that folder to see how this app was
+		implemented.
+	</p>
+	<hr/>
+	<p>
+		To create a new application, create a subfolder in that in the EXOapps
+		folder, then create an html file with the same name as the subfolder, but
+		with the string <code>app-</code> prepended to it. For example, if your
+		folder is called <code>MyExoUApp</code>, then your html file should be
+		called <code>app-MyExoUApp.htm</code>. Note also that the extension must
+		be <code>.htm</code>; <code>.html</code> will not work.
+	</p>
+	<p>
+		Your application must declare a globally visible <code>exomain</code>
+		JavaScript function. The EXO U framework will invoke that function after
+		your HTML page has loaded. The EXO U framework also exposes a globally
+		visible <code>exo</code> object as its API. The documentation for the API
+		is available at <a href="http://www.exou.com/api-object-reference/">http://www.exou.com/api-object-reference/</a>.
+	</p>
+	<p>
+		Your code should set the width and height of the <code>exo.app</code>
+		object, because by default, the width and height are 0, meaning your
+		application will not be visible to the user. For example, this app uses the
+		following code:
+	</p>
+<pre>
+function exomain() { 
+	exo.app.width = exo.workspace.width;
+	exo.app.height = exo.workspace.height;
+	exo.app.left = 0;
+	exo.app.top = 0;
+	exo.app.movable = 0;
+	var scrollable_container = document.getElementById("scrollable_container");
+	scrollable_container.style.height = exo.app.height + "px";
+}
+</pre>
+	<p>
+		The last two lines are related to the fact that by default, the HTML
+		renderer does not display a scrollbar if your application's contents exceed
+		the height of the viewport.
+	</p>
+	<hr/>
+	<p>
+		To customize the icon for the app, create a PNG file named
+		<code>app.png</code>. The icon for this particular app was designed by
+		<a href="http://svengraph.deviantart.com/art/This-is-ART-2-166536988">Svengraph</a>
+		and is used with the "You can share these icons with url back to
+		Officinadigitale.org (credits)" license.
+	</p>
+	<hr/>
+	<p>
+		After making changes to your code (e.g. in a text editor), you can simply
+		alt tab back into EXO, quit your app, and then run the app again to see the
+		changes. I.e., you do not need to restart EXO, nor do you need to tell it to
+		"refresh the apps" or anything like that; it will reload the code each time
+		the application starts up.
+	</p>
+</div>
+<footer>
+	<p>
+		<small>This application is provided under the MIT license (MIT).</small>
+	</p>
+	<p><small>
+		Copyright &copy; 2013 <a href="mailto:nebupookins@gmail.com">Nebu Pookins</a>
+	</small></p>
+	<p><small>
+		Permission is hereby granted, free of charge, to any person obtaining a copy
+		of this software and associated documentation files (the "Software"), to
+		deal in the Software without restriction, including without limitation the
+		rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+		sell copies of the Software, and to permit persons to whom the Software is
+		furnished to do so, subject to the following conditions:
+	</small></p>
+	<p><small>
+		The above copyright notice and this permission notice shall be included in
+		all copies or substantial portions of the Software.
+	</small></p>
+	<p><small>
+		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+		FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+		IN THE SOFTWARE.
+	</small></p>
+</footer>
+</div>
+</div>
+<script type="text/javascript">
+function exomain() { 
+	exo.app.width = exo.workspace.width;
+	exo.app.height = exo.workspace.height;
+	exo.app.left = 0;
+	exo.app.top = 0;
+	exo.app.movable = 0;
+	var scrollable_container = document.getElementById("scrollable_container");
+	scrollable_container.style.height = exo.app.height + "px";
+}
+</script> 
+</body>
+</html>
